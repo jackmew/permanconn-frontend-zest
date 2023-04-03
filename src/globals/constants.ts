@@ -1,6 +1,6 @@
-import { IconUserCircle } from '@tabler/icons';
+import { IconBrandProducthunt } from '@tabler/icons';
 export enum UrlPath {
   Root = '/',
-  User = '/user',
+  Product = '/product',
 }
-export const menuAll = [{ label: 'User', icon: IconUserCircle, link: UrlPath.User }];
+export const menuAll = [{ label: 'Product', icon: IconBrandProducthunt, link: UrlPath.Product }];
