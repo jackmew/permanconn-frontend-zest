@@ -2,6 +2,7 @@ import useSWR, { mutate } from 'swr';
 import axios, { AxiosResponse } from 'axios';
 import { host } from '@globals/constants';
 import { notifications } from '@mantine/notifications';
+import { IProduct, ProductResponse } from '@components/Product/Product.types';
 
 interface useCrudProps {
   limit: number;
@@ -10,7 +11,7 @@ interface useCrudProps {
 
 export function getProductUrl(limit: number, skip: number) {
   // Construct the dynamic URL
-  return `/api/products?limit=${limit}&skip=${skip}`;
+  return `${host}/products?limit=${limit}&skip=${skip}`;
 }
 
 export function getProductSearchUrl(debouncedSearchQuery: string) {
@@ -19,7 +20,7 @@ export function getProductSearchUrl(debouncedSearchQuery: string) {
 
 export function getUrl(limit: number, skip: number) {
   // Construct the dynamic URL
-  return `/api/products?limit=${limit}&skip=${skip}`;
+  return `${host}/products?limit=${limit}&skip=${skip}`;
 }
 
 export const fetcher = (url: string) => axios.get(url).then((res: AxiosResponse) => res.data);
@@ -38,8 +39,23 @@ export function useCrud({ limit, skip }: useCrudProps) {
   };
 
   const remove = async (id: string) => {
+    console.log('remove', id);
     await axios.delete(`${host}/products/${id}`);
-    mutate(getUrl(limit, skip));
+    mutate(
+      getUrl(limit, skip),
+      (currentData: ProductResponse | undefined) => {
+        console.log('currentData', currentData);
+        if (!currentData) {
+          return undefined;
+        }
+        // Filter out the deleted item from the data array
+        return {
+          ...currentData,
+          products: currentData.products.filter((item) => item._id !== id),
+        };
+      },
+      false
+    );
   };
 
   const get = async (id: string | string[] | undefined) => {
