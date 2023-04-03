@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { hasLength, isInRange, useForm } from '@mantine/form';
-import { Product } from '@components/Product/Product.types';
+import { IProductForm } from '@components/Product/Product.types';
 import { MODAL_RESPONSE, openConfirmModal } from '@hooks/useModal';
-import { UrlPath } from '@globals/constants';
 import { notifications } from '@mantine/notifications';
 import { useCrud } from '@hooks/useCrud';
 
@@ -17,9 +16,8 @@ export const useProductEdit = () => {
   const [isEdit, setIsEdit] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
-  const form = useForm<Product>({
+  const form = useForm<IProductForm>({
     initialValues: {
-      _id: '',
       title: '',
       description: '',
       price: 0,
@@ -63,9 +61,7 @@ export const useProductEdit = () => {
     fetchData();
   }, [id]);
 
-  const onSaveSubmit = async (values: Product) => {
-    console.log(values);
-
+  const toCreate = async (values: IProduct) => {
     const res = await openConfirmModal({
       text: 'Confirm to add a new product?',
     });
@@ -85,6 +81,41 @@ export const useProductEdit = () => {
           color: 'red',
         });
       }
+    }
+  };
+  const toUpdate = async (values: IProduct) => {
+    const res = await openConfirmModal({
+      text: 'Confirm to update a product?',
+    });
+    if (res === MODAL_RESPONSE.Y) {
+      try {
+        if (typeof id === 'string') {
+          await update(id, values);
+          router.back();
+          notifications.show({
+            title: 'Hint',
+            message: 'Edit product success',
+          });
+        } else {
+          console.log('toUpdate: id is not string');
+        }
+      } catch (err) {
+        console.log(err);
+        notifications.show({
+          title: 'Error',
+          message: 'Edit product failed',
+          color: 'red',
+        });
+      }
+    }
+  };
+
+  const onSaveSubmit = async (values: IProduct) => {
+    console.log(values);
+    if (isEdit) {
+      await toUpdate(values);
+    } else {
+      await toCreate(values);
     }
   };
 
