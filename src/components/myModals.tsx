@@ -13,6 +13,7 @@ export const ConfirmModal = ({ context, id, innerProps }: ContextModalProps<IInn
       <Flex gap="sm" direction="row" justify="flex-end">
         <Button
           mt="md"
+          color={'gray'}
           onClick={() => {
             context.closeModal(id);
             innerProps.resolve(MODAL_RESPONSE.N);
