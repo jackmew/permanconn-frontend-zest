@@ -51,9 +51,12 @@ export default function ProductTable() {
 
   const debouncedSearchQuery = useDebounce(searchQuery, 500);
 
-  const url = `https://dummyjson.com/products?limit=${limit}&skip=${skip}`;
+  // const host = 'https://dummyjson.com';
+  const host = 'http://localhost:3001/permanconn-backend-zest';
+
+  const url = `${host}/products?limit=${limit}&skip=${skip}`;
   const { data, error } = useSWR<ProductResponse>(
-    debouncedSearchQuery ? `https://dummyjson.com/products/search?q=${debouncedSearchQuery}` : url,
+    debouncedSearchQuery ? `${host}/products/search?q=${debouncedSearchQuery}` : url,
     fetcher
   );
 
@@ -137,9 +140,13 @@ export default function ProductTable() {
                 </Group>
               ),
             },
-            { accessor: 'id', width: 50, sortable: false },
-            { accessor: 'title', width: 200, sortable: false },
+            { accessor: 'title', width: 100, sortable: false },
             { accessor: 'description', width: '100%' },
+            { accessor: 'brand', width: 200 },
+            { accessor: 'category', width: 150 },
+            { accessor: 'price', width: 100 },
+            { accessor: 'rating', width: 100 },
+
             // {
             //   accessor: 'birthDate',
             //   textAlignment: 'right',
