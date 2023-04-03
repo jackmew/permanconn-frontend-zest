@@ -1,4 +1,3 @@
-import axios, { AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
@@ -39,7 +38,7 @@ export const useProductTable = () => {
   const url = `${host}/products?limit=${limit}&skip=${skip}`;
   // console.log('url', url);
   const { data, error } = useSWR<ProductResponse>(
-    debouncedSearchQuery ? `${host}/products/search?q=${debouncedSearchQuery}` : url,
+    debouncedSearchQuery ? `${host}/search/products?q=${debouncedSearchQuery}` : url,
     fetcher
   );
   const { remove } = useCrud({

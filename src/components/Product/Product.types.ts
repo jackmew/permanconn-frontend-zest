@@ -1,5 +1,4 @@
-export interface Product {
-  _id: string;
+export interface IProductForm {
   title: string;
   description: string;
   price?: number;
@@ -11,9 +10,12 @@ export interface Product {
   thumbnail?: string;
   images?: string[];
 }
+export interface IProduct extends IProductForm {
+  _id: string;
+}
 
 export interface ProductResponse {
-  products: Product[];
+  products: IProduct[];
   total: number;
   skip: number;
   limit: number;

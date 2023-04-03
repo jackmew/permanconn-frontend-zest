@@ -1,19 +1,6 @@
-import {
-  Box,
-  Button,
-  Center,
-  Grid,
-  Stack,
-  TextInput,
-  Text,
-  ActionIcon,
-  Group,
-  Flex,
-} from '@mantine/core';
+import { Box, Button, Grid, TextInput, Text, ActionIcon, Group, Flex } from '@mantine/core';
 import { IconSearch, IconTrash, IconPlus, IconEdit } from '@tabler/icons-react';
 import { DataTable } from 'mantine-datatable';
-import { showNotification } from '@mantine/notifications';
-import { closeAllModals, openModal } from '@mantine/modals';
 import { useProductTable, PAGE_SIZES } from '@components/Product/ProductTable/useProductTable';
 
 export default function ProductTable() {
