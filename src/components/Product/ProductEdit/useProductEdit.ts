@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { hasLength, isInRange, useForm } from '@mantine/form';
-import { IProductForm } from '@components/Product/Product.types';
+import { IProduct, IProductForm } from '@components/Product/Product.types';
 import { MODAL_RESPONSE, openConfirmModal } from '@hooks/useModal';
 import { notifications } from '@mantine/notifications';
 import { useCrud } from '@hooks/useCrud';

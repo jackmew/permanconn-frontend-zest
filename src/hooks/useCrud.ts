@@ -1,8 +1,7 @@
 import useSWR, { mutate } from 'swr';
 import axios, { AxiosResponse } from 'axios';
 import { host } from '@globals/constants';
-import { notifications } from '@mantine/notifications';
-import { IProduct, ProductResponse } from '@components/Product/Product.types';
+import { ProductResponse } from '@components/Product/Product.types';
 
 interface useCrudProps {
   limit: number;
