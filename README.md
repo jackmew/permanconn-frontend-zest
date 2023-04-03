@@ -25,4 +25,7 @@
 - `storybook:build` – build production storybook bundle to `storybook-static`
 - `prettier:write` – formats all files with Prettier
 
+![Table](./screenshots/screenshot1.png)
+![Form](./screenshots/screenshot2.png)
+
 
