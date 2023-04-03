@@ -47,7 +47,7 @@ export default function ProductTable() {
         </Grid.Col>
       </Grid>
 
-      <Box sx={{ height: 450 }}>
+      <Box sx={{ height: 550 }}>
         <DataTable
           withBorder
           records={data?.products || []}

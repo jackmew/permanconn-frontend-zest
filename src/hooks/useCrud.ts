@@ -51,6 +51,7 @@ export function useCrud({ limit, skip }: useCrudProps) {
         // Filter out the deleted item from the data array
         return {
           ...currentData,
+          total: currentData.total - 1,
           products: currentData.products.filter((item) => item._id !== id),
         };
       },
