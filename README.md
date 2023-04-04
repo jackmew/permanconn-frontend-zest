@@ -25,7 +25,7 @@
 - `storybook:build` – build production storybook bundle to `storybook-static`
 - `prettier:write` – formats all files with Prettier
 
-#### Open url - http://localhost:3000/permanconn-zest/product
+#### Open url - http://localhost:3000/permanconn-frontend-zest/product
 ![Table](./screenshots/screenshot1.png)
 ![Form](./screenshots/screenshot2.png)
 
