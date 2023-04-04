@@ -20,5 +20,5 @@ module.exports = withBundleAnalyzer({
   //   ];
   // },
   output: 'standalone',
-  basePath: '/permanconn-zest',
+  basePath: '/permanconn-frontend-zest',
 });
