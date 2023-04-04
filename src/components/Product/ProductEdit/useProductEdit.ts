@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { hasLength, isInRange, useForm } from '@mantine/form';
-import { IProduct, IProductForm } from '@components/Product/Product.types';
+import { IProductForm } from '@components/Product/Product.types';
 import { MODAL_RESPONSE, openConfirmModal } from '@hooks/useModal';
 import { notifications } from '@mantine/notifications';
 import { useCrud } from '@hooks/useCrud';
@@ -61,7 +61,7 @@ export const useProductEdit = () => {
     fetchData();
   }, [id]);
 
-  const toCreate = async (values: IProduct) => {
+  const toCreate = async (values: IProductForm) => {
     const res = await openConfirmModal({
       text: 'Confirm to add a new product?',
     });
@@ -83,7 +83,7 @@ export const useProductEdit = () => {
       }
     }
   };
-  const toUpdate = async (values: IProduct) => {
+  const toUpdate = async (values: IProductForm) => {
     const res = await openConfirmModal({
       text: 'Confirm to update a product?',
     });
@@ -110,7 +110,7 @@ export const useProductEdit = () => {
     }
   };
 
-  const onSaveSubmit = async (values: IProduct) => {
+  const onSaveSubmit = async (values: IProductForm) => {
     console.log(values);
     if (isEdit) {
       await toUpdate(values);

@@ -39,3 +39,6 @@ storybook-static
 
 # intellij
 .idea/
+
+# Docker login
+docker_password.txt

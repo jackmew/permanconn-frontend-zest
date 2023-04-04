@@ -29,4 +29,9 @@
 ![Table](./screenshots/screenshot1.png)
 ![Form](./screenshots/screenshot2.png)
 
+## Docker build and push
+- `cd ./scripts` - go to scripts folder
+- `./push-new-image.sh` - build docker image and push
 
+## Docker run
+- `  docker run -d -p 3000:3000 --name permanconn-frontend-zest zestlifia/permanconn-frontend-zest:latest ` - run docker image
